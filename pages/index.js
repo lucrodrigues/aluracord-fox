@@ -38,7 +38,7 @@ function Titulo(props) {
       <Tag>{props.children}</Tag>
       <style jsx>{`
       ${Tag} {
-        color: ${appConfig.theme.colors.neutrals['900']};
+        color: ${appConfig.theme.colors.neutrals['100']};
         font-size: 24px;
         font-weight: 600;
       }
@@ -71,7 +71,7 @@ export default function PaginaInicial() {
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           backgroundColor: appConfig.theme.colors.primary[500],
-          backgroundImage: 'url(https://i.pinimg.com/originals/a4/8c/5c/a48c5c6d31119800605ef0de228e4631.png)',
+          backgroundImage: 'url(https://i.kym-cdn.com/photos/images/original/001/315/787/15c.gif)',
           backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
         }}
       >
@@ -86,8 +86,8 @@ export default function PaginaInicial() {
             },
             width: '100%', maxWidth: '700px',
             borderRadius: '5px', padding: '32px', margin: '16px',
-            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-            backgroundColor: appConfig.theme.colors.neutrals[700],
+            boxShadow: '0px 10px 8px 8px rgb(0 0 0 / 40%)',
+            backgroundColor: appConfig.theme.colors.neutrals[0],
           }}
         >
           {/* Formulário */}
@@ -98,8 +98,10 @@ export default function PaginaInicial() {
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
             }}
           >
-            <Titulo tag="h2">Boas vindas de volta!</Titulo>
-            <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
+            <Titulo tag="h2">Ei, rapaz!</Titulo>
+            <Text variant="body3" styleSheet={{ 
+              marginBottom: '32px', 
+              color: appConfig.theme.colors.neutrals[100] }}>
               {appConfig.name}
             </Text>
 
@@ -120,10 +122,13 @@ export default function PaginaInicial() {
               fullWidth
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals["000"],
-                mainColor: appConfig.theme.colors.primary[500],
-                mainColorLight: appConfig.theme.colors.primary[400],
-                mainColorStrong: appConfig.theme.colors.primary[600],
+                mainColor: appConfig.theme.colors.primary[400],
+                mainColorLight: appConfig.theme.colors.primary[100],
+                mainColorStrong: appConfig.theme.colors.primary[100],
               }}
+              onClick={function noRefCheck(){}}
+              size="xl"
+              variant="secondary"
             />
           </Box>
           {/* Formulário */}
@@ -136,13 +141,7 @@ export default function PaginaInicial() {
               flexDirection: 'column',
               alignItems: 'center',
               maxWidth: '200px',
-              padding: '16px',
-              backgroundColor: appConfig.theme.colors.neutrals[800],
-              border: '1px solid',
-              borderColor: appConfig.theme.colors.neutrals[999],
-              borderRadius: '10px',
-              flex: 1,
-              minHeight: '240px',
+              padding: '16px'
             }}
           >
             <Image
