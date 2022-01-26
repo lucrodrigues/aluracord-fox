@@ -1,35 +1,7 @@
-import { Box, Button, Text, TextField, Image } from '@skynexui/components'
+import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import {useRouter} from 'next/router';
 import appConfig from '../config.json';
-
-
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */ 
-      html, body, #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */ 
-    `}</style>
-  );
-}
+import React from 'react';
 
 function Titulo(props) {
   const Tag = props.tag || 'h1';
@@ -62,11 +34,12 @@ function Titulo(props) {
 //export default HomePage
 
 export default function PaginaInicial() {
-  const username = 'lucrodrigues';
+  // const username = 'lucrodrigues';
+      const [username, setUsername] = React.useState('');
+      const roteamento = useRouter();
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -93,6 +66,10 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit = {function (infosDoEvento) {
+              infosDoEvento.preventDefault()
+              roteamento.push('/chat');
+            }}
             styleSheet={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -104,9 +81,30 @@ export default function PaginaInicial() {
               color: appConfig.theme.colors.neutrals[100] }}>
               {appConfig.name}
             </Text>
+              
+            {/*<input
+                type="text"
+                value={username}
+                onChange={function (evento) {
+                  // Onde ta o valor?
+                  const valor = event.target.value;
+                  // Trocar o valor da variavel
+                  // através do React e avise quem precisa
+                  setUsername(valor);
+                }}
+              /> */}
 
             <TextField
+               value={username}
+               onChange={function (evento) {
+                 // Onde ta o valor?
+                 const valor = event.target.value;
+                 // Trocar o valor da variavel
+                 // através do React e avise quem precisa
+                 setUsername(valor);
+                 }}
               fullWidth
+              placeholder='user do github'
               textFieldColors={{
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[200],
@@ -141,7 +139,13 @@ export default function PaginaInicial() {
               flexDirection: 'column',
               alignItems: 'center',
               maxWidth: '200px',
-              padding: '16px'
+              padding: '16px',
+              backgroundColor: appConfig.theme.colors.neutrals[0],
+              border: '1px solid',
+              borderColor: appConfig.theme.colors.neutrals[100],
+              borderRadius: '10px',
+              flex: 1,
+              minHeight: '240px',
             }}
           >
             <Image
@@ -149,7 +153,7 @@ export default function PaginaInicial() {
                 borderRadius: '50%',
                 marginBottom: '16px',
               }}
-              src={`https://github.com/${username}.png`}
+              src={username.length > 2 ? `https://github.com/${username}.png`: 'https://res.cloudinary.com/practicaldev/image/fetch/s--LJoiIpbz--/c_imagga_scale,f_auto,fl_progressive,h_1080,q_auto,w_1080/https://thepracticaldev.s3.amazonaws.com/i/lol25tlqcayxwfg7hkec.png'}
             />
             <Text
               variant="body4"
@@ -160,7 +164,7 @@ export default function PaginaInicial() {
                 borderRadius: '1000px'
               }}
             >
-              {username}
+              {username.length > 2 ? username: 'Digite um nome!'}
             </Text>
           </Box>
           {/* Photo Area */}
